@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <label>Title</label>
+        <input type="text" class="form-control" id="txtTitle" /> <br />
+
+        <label>Release Date</label>
+        <input type="date" class="form-control" id="txtRelease" /> <br />
+
+        <label>InCinema</label>
+        <input type="radio" class="form-check-input" name="rdCinema" value="true" /> <label>Yes</label>
+        <input type="radio" class="form-check-input" name="rdCinema" value="false" /> <label>No</label><br />
+
+
+        <label>Genre</label>
+        <input type="text" class="form-control" id="txtGenre" /> <br />
+
+        <label>Director</label>
+        <input type="text" class="form-control" id="txtDirector" /> <br />
+
+        <label>Language</label>
+        <input type="text" class="form-control" id="txtLanguage" /> <br />
+
+        <input type="button" value="Save" class="btn btn-primary" onclick="save()" />                        
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function save() {
+        let obj = {
+            Title: $('#txtTitle').val(),
+            ReleaseDate: $('#txtRelease').val(),
+            InCinema: ($('[name=rdCinema]:checked').val() === "true") ? true : false,
+            Genre: $('#txtGenre').val(),
+            Director: $('#txtDirector').val(),
+            ScriptLanguage: $('#txtLanguage').val(),
+        }
+
+        debugger;
+
+        $.ajax({
+            url: '@Url.Action("create")',
+            type: 'POST',
+            data: JSON.stringify(obj),
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                alert('saved success');
+                window.open('/movie', '_self')
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+
+    }
+
+</script>

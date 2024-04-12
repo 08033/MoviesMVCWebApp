@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<Film>
+
+<h1>Welcome to Movies</h1>
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>ReleaseDate</th>
+                <th>InCinema</th>
+                <th>Genre</th>
+                <th>Director</th>
+                <th>ScriptLanguage</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var filmm in Model){
+                <tr>
+                    <td>@filmm.Id</td>
+                    <td>@filmm.Title</td>
+                    <td>@filmm.ReleaseDate</td>
+                    <td>@filmm.InCinema</td>
+                    <td>@filmm.Genre</td>
+                    <td>@filmm.Director</td>
+                    <td>@filmm.ScriptLanguage</td>
+                    <td>
+                        @* <button class="btn btn-danger" onclick="">Delete</button> *@
+                        <a class="btn btn-danger" asp-controller="Movie" asp-action="delete" asp-route-filmId="@filmm.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
